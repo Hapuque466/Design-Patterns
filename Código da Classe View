@@ -1,1 +1,79 @@
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+
+public class View extends JFrme implements Observer{
+
+
+     private Model model;
+     private Jpanel pnlCampo1;
+     private JPanel pnlCampo2;
+     private JPanel pnlBotao;
+     private JLabel lblCampo1;
+     private JLabel lblCampo2;
+     private JTextField txtCampo1;
+     private JTextField txtcampo2;
+     private JButton botao;
+
+
+     public View(String titulo, Model model){
+          super(titulo);
+          this.model = model;
+      	renderizarComponentes();
+ 	}
+
+
+     public void renderizarComponentes(){
+      	pnlCampo1 = new JPanel();
+      	pnlCampo2 = new JPanel();
+      	pnlBotao = new JPanel();
+      	lblCampo1 = new JLabel("Campo1:");
+      	lblCampo2 = new JLabel("Campo2:");
+      	txtCampo1 = new JTextField(20);
+      	txtCampo2 = new JTextField(20);
+      	botao = new JButton("Funcao");
+
+
+      	pnlCampo1.add(lblCampo1);
+      	pnlCampo1.add(txtCampo1);
+
+
+      	pnlCampo2.add(lblCampo2);
+      	pnlCampo2.add(txtCampo2);
+
+
+      	pnlBotao.add(botao);
+
+
+      	botao.addActionListener(new ActionListener(){
+           	public void actionPerformed(ActionEvvent e){
+                	model.atualizar(txtCampo1.getText(),
+                	Integer.parseInt(txtCampo2.getText()));
+           	}
+      	});
+
+
+          this.setLayout(new GridLayout(3,1));
+          this.add(pnlCampo1);
+          this.add(pnlCampo2);
+          this.add(pnlBotao);
+
+
+          this.setSize(300,300);
+          this.setVisible(true);
+ 	}
+
+
+     public void update(Observable o, Object arg){
+          this.setVisible(false);
+ 	}
+}
 
