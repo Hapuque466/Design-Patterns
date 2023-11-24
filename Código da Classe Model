@@ -1,0 +1,36 @@
+import java.util.Observable;
+public class Model extends Observable{
+     private String campo1;
+     private Integer campo2;
+
+
+     public void atualizar(String campo1, Integer campo2){
+          this.campo1 = campo1;
+          this.campo2 = campo2;
+
+
+          //Métodos que "avisam" os observadores
+      	notifyObservers();
+      	setChanged();
+ 	}
+
+
+     public String getCampo1(){
+          return campo1;
+ 	}
+
+
+     public void setCampo1(String campo1){
+          this.campo1 = campo1
+ 	}
+
+
+     public Integer getCampo2(){
+          return campo2;
+ 	}
+
+
+     public void setCampo2(Integer campo2){
+          this.campo2 = campo2;
+ 	}
+}
