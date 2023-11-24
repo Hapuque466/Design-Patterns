@@ -1,0 +1,28 @@
+import java.util.Observable;
+import java.util.Observer;
+
+
+public class Controller implements Observer{
+     private Model model;
+     private View view;
+
+
+     public static void main(String[] args){
+          new Controller();
+ 	}
+
+
+     public Controller(){
+      	model = new Model();
+      	view = new View("Camada Visão", model);
+      	model.addObserver(this);
+      	model.addObserver(view);
+ 	}
+
+
+     public void update(Observable o, Object arg){
+      	System.out.println("O modelo contém os seguintes dados:");
+      	System.out.println("Campo 1:"+ model.getCampo1());
+      	System.out.println("Campo 2:"+ model.getCampo2());
+ 	}
+}
